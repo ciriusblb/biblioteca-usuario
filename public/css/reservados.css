@@ -1,0 +1,151 @@
+
+	#reservados .section-heading {
+	    position: relative;
+	}
+	#reservados .section-heading::after {
+	    content: "";
+	    position: absolute;
+	    width: 40%;
+	    height: 2px;
+	    bottom: -10px;
+	    left: 30%;
+	    background: #ddd;
+	    transform: translate(0%);
+	}
+	#reservados .product-box {
+	    position: relative;
+	    box-shadow: 0px 2px 10px -4px #333745;
+	    cursor: pointer;
+	    padding: 10px 10px;
+	    margin-bottom: 20px;
+	    margin-top: 15px;
+	}
+
+	#reservados .cap-bg-black {
+	    background: #333745;
+	}
+	#reservados .cap-bg-black i{
+		font-size: 20px;
+	}
+
+	#reservados .product-cap {
+	    position: absolute;
+	    height: 50px;
+	    width: 50px;
+	    color: #fff;
+	    top: 0;
+	    text-align: center;
+	    font-weight: 600;
+	    line-height: 50px;
+	    font-size: 12px;
+	    border-radius: 100%;
+	}
+
+	#reservados .product-title {
+	    font-size: 17px;
+	    text-transform: uppercase;
+	    font-weight: 600;
+	    color: #f82e56;
+	    line-height: 45px;
+	    transition: all .4s ease-in;
+	}
+
+	#reservados .product-title:hover {
+	    color: #333745;
+	    transition: all .4s ease-in;
+	}
+
+	#reservados .product-price {
+	    font-size: 17px;
+	    font-weight: 600;
+	    line-height: 15px;
+	    color: #333745;
+	}
+
+	#reservados .product-drisc {
+	    line-height: 18px;
+	    margin-top: 10px;
+	}
+
+	#reservados .hoverly-item {
+	    border-radius: 10px;
+	    -webkit-animation: circle .50s;
+	    animation: circle .50s;
+	    position: absolute;
+	    top: 7%;
+	    opacity: 0;
+	    background-color: rgba(0, 100, 100, 0.5);
+	    width: 85%;
+	    height: 77%;
+	    left: 8%;
+	    transition: all .4s ease-in;
+	}
+
+	#reservados .product-box:hover .hoverly-item {
+	    opacity: 1;
+	    transition: all .4s ease-in;
+	}
+
+	#reservados .hoverly-item a {
+	    line-height: 200px;
+	}
+
+	#reservados .hoverly-item a i {
+	    font-size: 20px;
+	    background: #f82e56;
+	    color: #fff;
+	    height: 40px;
+	    width: 40px;
+	    line-height: 35px;
+	    border: 3px solid transparent;
+	    transition: all .4s ease-in;
+	}
+
+	#reservados .hoverly-item a i:hover {
+	    border: 3px solid #f82e56;
+	    background: #fff;
+	    color: #f82e56;
+	    transition: all .4s ease-in;
+	}
+	#reservados .view-details-btn {
+	    text-transform: uppercase;
+		line-height: 20px !important;
+		margin-top: -50%;
+		padding: 8px 25px;
+		background: #f82e56;
+		color: #fff;
+		border-color: transparent;
+		border-radius: 0px;
+	}
+	#reservados .view-details-btn:hover {
+	    color: #f82e56!important;
+	    border: 1px solid #f82e56!important;
+	    background: #fff!important;
+	    -webkit-transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+	    transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+	}
+	#reservados .buy-now {
+	    margin-top: 10px;
+	    margin-bottom: 15px;
+	    color: #f82e56;
+	    border-radius: 0px;
+	    padding: 8px 25px;
+	    border: 1px solid #f82e56;
+	    background: none;
+	    white-space: nowrap;
+	    letter-spacing: 0px;
+	    display: inline-block;
+	    text-transform: capitalize;
+	    -webkit-animation-delay: 2s;
+	    animation-delay: 2s;
+	    -webkit-transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+	    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+	}
+
+	#reservados .buy-now:hover {
+	    color: #ffffff!important;
+	    border: 1px solid #ffffff!important;
+	    background: #f82e56!important;
+	    -webkit-transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+	    transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+	}

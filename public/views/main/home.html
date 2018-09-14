@@ -1,0 +1,431 @@
+<div ng-init="start()">
+  <nav class="navbar navbar-inverse top-bar navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button> <span class="menu-icon" id="menu-icon" click-Menu><i class="fa fa-times" aria-hidden="true" id="chang-menu-icon"></i></span>
+        <a class="navbar-brand" href=""><img src="https://lh3.googleusercontent.com/-N4NB2F966TU/WM7V1KYusRI/AAAAAAAADtA/fPvGVNzOkCo7ZMqLI6pPITE9ZF7NONmawCJoC/w185-h40-p-rw/logo.png" width="90%"> </a>
+      </div>
+      <div class="collapse navbar-collapse navbar-right" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="dropdown" click-move ng-click="verPublicacion()" id="noticias"><a ui-sref=".dashboard"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-envelope"></i> <span class="badge">{{cant}}</span></a>
+            <!-- <ul class="dropdown-menu dropdown-cart " role="menu">
+              <li ng-repeat = "c in notificaciones">
+                  <span class="item">
+                    <a ui-sref="home.libro({Book:c.codigo_libro})">
+                    <span class="item-left" ng-if="c.estado==1">
+                        <img ng-src="libros/{{c.portada_l}}" alt="" width="50px" height="50px"  />
+                        <span class="item-info">
+                            <span>{{c.descripcion}}</span>
+                        </span>
+                    </span>
+                    <span class="item-left" ng-if="c.estado==0" style="background: #F0FFFF;">
+                        <img ng-src="libros/{{c.portada_l}}" alt="" width="50px" height="50px"  />
+                        <span class="item-info">
+                            <span>{{c.descripcion}}</span>
+                        </span>
+                    </span>
+                    </a>
+                </span>
+              </li>
+              <li class="divider"></li>
+              <li><a class="text-center" href="">View Cart</a></li>
+          </ul> -->
+          </li>
+          <li class="dropdown" id="notificaciones"><a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-bell"></i> <span class="badge">{{cantidad}}</span></a> 
+            <ul class="dropdown-menu dropdown-cart " role="menu">
+              <li ng-repeat = "c in notificaciones" ng-click="vc.desnotificar($index)">
+                  <span class="item">
+                    <a ui-sref="home.libro({Book:c.codigo_libro})">
+                    <span class="item-left" ng-if="c.estado==1">
+                        <img ng-src="libros/{{c.portada_l}}" alt="" width="50px" height="50px"  />
+                        <span class="item-info">
+                            <span>{{c.descripcion}}</span>
+                        </span>
+                    </span>
+                    <span class="item-left" ng-if="c.estado==0" style="background: #F0FFFF;">
+                        <img ng-src="libros/{{c.portada_l}}" alt="" width="50px" height="50px"  />
+                        <span class="item-info">
+                            <span>{{c.descripcion}}</span>
+                        </span>
+                    </span>
+                    </a>
+                </span>
+              </li>
+              <li class="divider"></li>
+              <li><a class="text-center" href="">View Cart</a></li>
+          </ul>
+          </li>
+          <li class="">
+            <a href="#" class="user-profile"> <span class=""><img class="img-responsive" src="/upload/{{usuario.perfil_usuario}}"></span> </a>
+          </li>
+          <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="">          
+           <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li> <a ui-sref=".perfil"><i class="fa fa-user"></i> {{vc.mensaje}}</a> </li>
+              <li> <a href="#"><i class="fa fa-cog"></i> Setting</a> </li>
+              <li> <a href="" ng-click="vc.salir()"><i class="fa fa-power-off"></i> Logout</a> </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!--    top nav end===========-->
+  <div class="wrapper" id="wrapper">
+    <div class="left-container" id="left-container">
+      <!-- begin SIDE NAV USER PANEL -->
+      <div class="left-sidebar" id="show-nav">
+        <ul id="side" class="side-nav">
+          <li class="panel" ui-serf-active="active">
+            <a id="panel1" ui-sref=".dashboard"> <i class="fa fa-dashboard"></i> Dashboard
+              <i class="fa fa-chevron-right pull-right" id="arow1"></i> </a>
+          </li>
+          <li class="panel">
+            <a id="panel2" ui-sref=".escuelas" data-toggle="" data-target=""> <i class="fa fa-bar-chart-o"></i> Areas
+              <i class="fa fa-chevron-down pull-right" id="arow2"></i> </a>
+            <ul class=" nav" id="">
+               <li ng-repeat="d in areas" ui-serf-active="active" click-Menu class="{{d.codigo_area}}"> <a ui-sref=".area({Area:d.ruta_area})"><i class="fa fa-angle-double-right"></i>{{d.nombre_area}}</a> </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!-- END SIDE NAV USER PANEL -->
+    </div>
+    <div class="right-container" id="right-container">
+        <div class="container-fluid">
+          <div ui-view></div>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<style type="text/css">
+    body::-webkit-scrollbar {
+        width: 7px;
+        background-color: #084951;
+    }
+    body::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    }
+    body::-webkit-scrollbar-thumb {
+        background-color: #FFB800;
+        outline: 1px solid red;
+    }
+
+    .color-blue{color:#1D92AF}
+    .color-segreen{color:#3F7577}
+    .color-orang{color:#CE7B11}
+
+    .padding-top > .col-md-6{padding-bottom:15px;}
+
+
+    .wrapper {
+        min-height: 2000px;
+    }
+    .padding-top {
+        padding: 0px;
+        padding-top: 15px;
+        !important;
+    }
+    .no-margin {
+        margin: 0px !important;
+    }
+    .no-margin {
+        margin: 0px !important;
+    }
+    /*Top Navbar/////////START///////////*/
+
+    .top-bar {
+        background-color: #084951;
+        padding: 0px;
+        border: solid 0px;
+        border-radius: 0px;
+        margin-bottom: 0px;
+    }
+    .menu-icon {
+        float: left;
+        height: 50px;
+        padding: 10px 15px;
+        font-size: 18px;
+        font-size: 25px;
+        color: #fff;
+        cursor: pointer;
+    }
+    .navbar-brand {
+        float: left;
+        height: 50px;
+        padding: 8px 15px;
+        font-size: 18px;
+        line-height: 20px;
+    }
+    .top-bar .form-control {
+        border-color: #fff;
+        color: #fff;
+        background-color: #000;
+        border-radius: 0px;
+    }
+    .top-bar .navbar-form {
+        padding: 0px 15px;
+        margin-top: 8px;
+        margin-right: -15px;
+        margin-bottom: 8px;
+        margin-left: -15px;
+        border-top: 0px solid transparent;
+        border-bottom: 0px solid transparent;
+        box-shadow: none;
+    }
+    .navbar-nav {
+        text-align: center;
+    }
+    .top-bar .btn-default {
+        border-color: #fff;
+        color: #fff;
+        background-color: #000;
+        border-radius: 0px;
+    }
+    .top-bar .badge {
+        display: inline-block;
+        min-width: 10px;
+        position: absolute;
+        top: 9px;
+        padding: 2px 5px;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 1;
+        color: #fff;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        background-color: #FF5722;
+        border-radius: 10px;
+    }
+    .top-bar .user-profile {
+        height: 30px;
+        width: 30px;
+        border-radius: 100%;
+        display: block;
+        padding: 11px 0px;
+    }
+    .top-bar .user-profile img {
+        border-radius: 100px;
+    }
+    .navbar-inverse .navbar-nav > li > a {
+        color: #fff;
+    }
+    @media (max-width: 768px) {
+        .nav > li {
+            position: relative;
+            display: inline-block;
+        }
+    }
+    /*************begin SIDE NAV *************/
+
+
+    .left-sidebar {
+        position: fixed;
+        left: 0px;
+        top:50px;
+        width: 240px;
+        height: 100%;
+        overflow: hidden;
+        -moz-box-shadow: 1px 4px 5px 4px rgba(0,
+        0,
+        0,
+        0.3);
+        -webkit-box-shadow: 1px 4px 5px 4px rgba(0,
+        0,
+        0,
+        0.3);
+        box-shadow: 1px 4px 5px 4px rgba(0,
+        0,
+        0,
+        0.3);
+        overflow-y: scroll;
+        transition: 0.5s;
+        z-index: 99;
+    }
+    .hide-sidebar {
+        position: fixed;
+        left: -250px;
+        top: 50px;
+        width: 240px;
+        height: 100%;
+        overflow: hidden;
+        -moz-box-shadow: 1px 4px 5px 4px rgba(0, 0, 0, 0.3);
+        -webkit-box-shadow: 1px 4px 5px 4px rgba(0, 0, 0, 0.3);
+        box-shadow: 1px 4px 5px 4px rgba(0, 0, 0, 0.3);
+        overflow-y: scroll;
+        z-index:99;
+    }
+    .left-sidebar::-webkit-scrollbar {
+        width: 6px;
+        background-color: #ECECEC;
+    }
+    .left-sidebar::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    }
+    .left-sidebar::-webkit-scrollbar-thumb {
+        background-color: #084951;
+        outline: 1px solid black;
+    }
+    .left-sidebar .side-nav {
+        margin: 0px;
+        padding: 0px;
+    }
+    .left-sidebar .side-nav li {
+        width: 100%;
+        list-style-type: none;
+        padding: 0px;
+    }
+    .left-sidebar .side-nav li a {
+        display: block;
+        padding: 15px;
+        text-decoration: none;
+    }
+    .panel {
+        margin-bottom: 0px;
+        background-color: #ECECEC;
+        border-top: 1px solid #777;
+        border-radius: 0px;
+        -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    }
+    .panel a {
+        color: #000;
+    }
+    .panel a:hover {
+        background-color: #f3f3f3;
+    }
+
+
+
+
+
+    /*right-container*****************/
+    @media (min-width: 768px) {
+
+    .left-container{width:18%;float: left;transition:0.5s;}
+    .right-container{width:82%;float:right;transition:0.5s;margin-top: 70px;}
+    .less-width{width:0%;transition:0.5s;}
+    .full-width{width:100%;transition:0.5s;}
+    } 
+    .mini-stat h5{
+        float: left;
+        margin: 0;
+        text-align: left;
+        font-size: 0.85em;
+        color: #888888;
+    }
+    .mini-stat li{
+        border-left: 1px solid #ddd;   
+        padding-left: 10px;
+        padding-right: 10px;} 
+
+    .mini-stat>li:first-child {
+        border-left: none;
+    }
+
+    .mini-stat h5 .stat-value{display:block;font-size:18px;margin-top:4px;}
+
+    .right-container .breadcrumb {
+        padding: 8px 15px;
+        margin-bottom: 20px;
+        list-style: none;
+        background-color:transparent;
+        border-radius: 4px;
+    }
+
+    .main-header {
+        margin-bottom: 30px;
+    }
+
+    .main-header h2 {
+        display: inline-block;
+        vertical-align: middle;
+        border-right: 1px solid #ccc;
+        margin: 0;
+        padding-right: 10px;
+        margin-right: 10px;
+    }
+
+    .main-header em {
+        color: #bbbbbb;
+    }
+</style>
+
+<style type="text/css">
+   .dropdown-cart{
+    min-width:350px;
+}
+   .dropdown-cart{
+    min-width:350px;
+}
+ .dropdown-cart li .item{
+    display:block;
+    padding:3px 10px;
+    margin: 3px 0;
+}
+ .dropdown-cart li .item:hover{
+    background-color:#f3f3f3;
+}
+ .dropdown-cart li .item:after{
+    /*visibility: hidden;*/
+    /*border: 1px solid red;*/
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+ .dropdown-cart li .item-left{
+    float:left;
+}
+ .dropdown-cart li .item-left img,
+ .dropdown-cart li .item-left span.item-info{
+    float:left;
+}
+ .dropdown-cart li .item-left span.item-info{
+    margin-left:10px;   
+}
+ .dropdown-cart li .item-left span.item-info span{
+    display:block;
+}
+ .dropdown-cart li .item-right{
+    float:right;
+}
+ .dropdown-cart li .item-right button{
+    margin-top:14px;
+}
+</style>
+ 
+
+
+ <script type="text/ng-template" id="warning-dialog.html">
+  <div class="modal-header">
+   <h3>Estás desocupado. ¡Haz algo!</h3>
+  </div>
+  <div idle-countdown="countdown" ng-init="countdown=5" class="modal-body">
+   <uib-progressbar max="5" value="5" animate="false" class="progress-striped active">Usted se desconectará en {{countdown}} segundo(s).</uib-progressbar>
+  </div>
+
+</script>
+<script type="text/ng-template" id="timedout-dialog.html">
+ <div class="modal-content">
+    <div class="modal-header">
+      <h3>¡Usted ha agotado el tiempo!</h3>
+    </div>
+    <div class="modal-body">
+      <p>stabas inactivo por demasiado tiempo. Normalmente, estarás desconectado, puedes volver a iniciar sesión si deseas.</p>
+    </div>
+  </div> 
+</script>
+
+
+
+

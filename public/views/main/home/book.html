@@ -1,0 +1,461 @@
+
+    <div class="moviecard">
+        <div id="remove">
+            <div class="movie-poster play-trailer"> <img width="100%" height="100%" ng-src="libros/{{vm.book.portada_l}}"></div>
+        </div>
+        
+        <div id="movie-content">
+            <div class="movie-ratings"><span class="star">★</span>
+                <!-- <span class="score">7.7</span><span class="score-out-of">/ 10 (IMDB)</span> -->
+            </div>
+            <div class="movie-title"><a target="_blank">{{vm.book.titulo_l}}</a>
+                <!-- <span class="movie-year">2015</span> -->
+            </div>
+            <!--<div class="movie-details"><span class="movie-rating">R</span><span class="movie-duration">2h 1min</span><span class="movie-genre">Action, Crime, Drama</span></div> -->
+            <div class="movie-castcrew"><span class="title">Autor</span><span class="name">{{vm.book.autor_l}}</span></div>
+            <div class="movie-castcrew"><span class="title">Area</span><span class="name">{{vm.book.nombre_area}}</span></div>
+            <div class="movie-castcrew"><span class="title">Cantidad</span><span class="name">{{vm.book.cantidad_l}}</span></div>
+            <div class="movie-synopsis">{{vm.book.descripcion_l}}</div>
+            <button ng-show="vm.reservado==0" class="reservar-btn-btn boton" ng-click="vm.verLibro(vm.book.codigo_libro)"  data-toggle="modal" data-target="#exampleModal" type="button">Reservar</button>
+            <button ng-show="vm.reservado==1" class="reservar-btn-btn2 boton2" type="button">Reservado</button>
+            <button ng-show="vm.reservado==4" class="reservar-btn-btn2 boton2" type="button">Prestado</button>
+            <button ng-show="vm.reservado==2" class="reservar-btn-btn3 boton3" ng-click="vm.enEspera(vm.book.codigo_libro)" type="button">Esperar</button>
+            <button ng-show="vm.reservado==3" class="reservar-btn-btn3 boton3" type="button">Esperando</button>
+
+
+        </div>
+    </div>
+
+<div class="comments-container">
+    <textarea class="form-control" rows="3" ng-model="vm.comentario.comentario_usuario"></textarea>
+    <button class="reservar-btn-btn boton" ng-click="vm.comentar(vm.book.codigo_libro)" type="button">Comentar</button>
+    <h1>Comentarios</h1>
+
+    <ul id="comments-list" class="comments-list">
+        <li ng-repeat="c in vm.comentarios">
+            <div class="comment-main-level">
+                <div class="comment-avatar"><img ng-src="upload/{{c.perfil_usuario}}" alt=""></div>
+                <div class="comment-box">
+                    <div class="comment-head">
+                        <h6 class="comment-name by-author"><a href="">{{c.nombre_usuario}}&nbsp;{{c.apellido_usuario}}</a></h6>
+                        <span>{{c.hora_comentada}}</span>
+                        <!--<i class="fa fa-reply"></i>
+                        <i class="fa fa-heart"></i> -->
+                    </div>
+                    <div class="comment-content">
+                       {{c.comentario_usuario}}
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="">
+      <div class="modal-body">
+        <div class="container" >
+            <div class="row" >
+                <div class="modal-body" >
+                    <div class="receipt-main col-xs-10 col-sm-10 col-md-6" >
+                        <button type="button" class="close" id="borrar" click-Book data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <div class="row">
+                            <div class="receipt-header">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="receipt-left">
+                                        <img class="img-responsive" alt="iamgurdeeposahan" src="img/UNAMAD.png" style="width: 71px; border-radius: 43px;">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+                                    <div class="receipt-right">
+                                        <h5>Universidad Nacional Amazónica de Madre de Dios</h5>
+                                        <p>+91 12345-6789 <i class="fa fa-phone"></i></p>
+                                        <p>admin@gmail.com <i class="fa fa-envelope-o"></i></p>
+                                        <p>Direccion de la biblioteca de Unamad <i class="fa fa-location-arrow"></i></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="receipt-header receipt-header-mid">
+                                <div class="col-xs-8 col-sm-8 col-md-8 text-left">
+                                    <div class="receipt-right">
+                                        <h5>Código de reserva <small> &nbsp;&nbsp; | {{vm.reserva.codigo_reserva}}</small></h5>
+                                        <h5>Número de reserva <small>  | {{vm.catidad_resevas+1}}</small></h5>
+                                        <p><b>Código de estudiante :</b>&nbsp;{{usuario.codigo_usuario}}</p>
+                                        <p><b>Nombres y Apellidos :</b>&nbsp;{{usuario.nombre_usuario}}&nbsp;{{usuario.apellido_usuario}}</p>
+                                        <p><b>Fecha :</b>&nbsp;{{vm.date | date}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4 col-sm-4 col-md-4">
+                                    <div class="receipt-left">
+                                        <h1>Reserva</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Descripcion</th>
+                                        <th>Cuentas</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="col-md-9">Código de libro</td>
+                                        <td class="col-md-3"><i class="fa fa-inr"></i> &nbsp;{{vm.reserva.codigo_libro}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-md-9">Duración de reserva en días</td>
+                                        <td class="col-md-3"><i class="fa fa-inr"></i>&nbsp;2</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-md-9" ng-click="vm.check()">Fecha de vencimiento de reserva</td>
+                                        <td class="col-md-3"><i class="fa fa-inr"></i>&nbsp;{{vm.reserva.fecha_vencimiento | date}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-md-9">Reservar para</td>
+                                        <td ng-if="vm.state == 2" ng-dblclick="vm.cambiar(2)" class="col-md-3"><i class="fa fa-inr"></i>
+                                           <span>&nbsp;{{vm.reserva.lugar_reserva}}</span> 
+                                        </td>
+                                        <td ng-if="vm.state == 1" class="col-md-3" ng-dblclick="vm.cambiar(0)" ><i class="fa fa-inr"></i>
+                                           <span>&nbsp;{{vm.reserva.lugar_reserva}}</span> 
+                                        </td>
+                                        <td ng-if="vm.state == 0" class="col-md-3" ng-dblclick="vm.cambiar(1)" ><i class="fa fa-inr"></i>
+                                            <select ng-model="vm.reserva.lugar_reserva">
+                                                <option>casa</option>
+                                                <option>sala</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="receipt-header receipt-header-mid receipt-footer">
+                                <div class="col-xs-12 col-sm-12 col-md-12 text-left">
+                                    <div class="receipt-right">
+                                        <p><b>Nota :</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" data-dismiss="modal"  click-Book ng-click="vm.reservar()" class="reservar-btn-btn boton">Guardar Reserva</button>
+                        </div>
+                        
+                    </div> 
+                </div>     
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style type="text/css">
+    .reservar-btn-btn {
+        background: #084951;
+        color: #fff;    
+    }
+    .reservar-btn-btn2 {
+        background: #f82e56;
+        color: #fff;    
+    }
+    .reservar-btn-btn3 {
+        background: #ec9a13;
+        color: #fff;    
+    }
+    .reservar-btn-btn:hover {
+        color: #084951!important;
+        border: 1px solid #084951!important;
+        background: #fff!important;
+    }
+    .reservar-btn-btn3:hover {
+        color: #ec9a13!important;
+        border: 1px solid #ec9a13!important;
+        background: #fff!important;
+    }
+    .boton,.boton2,.boton3{
+        text-transform: uppercase;
+        line-height: 20px !important;
+        margin-top: -0%;
+        padding: 8px 25px;
+        border-color: transparent;
+        border-radius: 0px;
+    }
+    .boton:hover{
+         -webkit-transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+        transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+    }
+</style>
+
+
+<style class="cp-pen-styles">/**
+ * Oscuro: #283035
+ * Azul: #03658c
+ * Detalle: #c7cacb
+ * Fondo: #dee1e3
+ ----------------------------------*/
+ * {
+    margin: 0;
+    padding: 0;
+    /*-webkit-box-sizing: border-box;*/
+    /*-moz-box-sizing: border-box;*/
+    /*box-sizing: border-box;*/
+ }
+
+ a {
+    color: #03658c;
+    text-decoration: none;
+ }
+
+ul {
+    list-style-type: none;
+}
+
+/** ====================
+ * Lista de Comentarios
+ =======================*/
+.comments-container {
+    margin: 60px auto 15px;
+    width: 768px;
+}
+
+.comments-container h1 {
+    font-size: 36px;
+    color: #283035;
+    font-weight: 400;
+}
+
+.comments-container h1 a {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.comments-list {
+    margin-top: 30px;
+    position: relative;
+}
+
+/**
+ * Lineas / Detalles
+ -----------------------*/
+.comments-list:before {
+    content: '';
+    width: 2px;
+    height: 100%;
+    background: #c7cacb;
+    position: absolute;
+    left: 32px;
+    top: 0;
+}
+
+.comments-list:after {
+    content: '';
+    position: absolute;
+    background: #c7cacb;
+    bottom: 0;
+    left: 27px;
+    width: 7px;
+    height: 7px;
+    border: 3px solid #dee1e3;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.reply-list:before, .reply-list:after {display: none;}
+.reply-list li:before {
+    content: '';
+    width: 60px;
+    height: 2px;
+    background: #c7cacb;
+    position: absolute;
+    top: 25px;
+    left: -55px;
+}
+
+
+.comments-list li {
+    margin-bottom: 15px;
+    display: block;
+    position: relative;
+}
+
+.comments-list li:after {
+    content: '';
+    display: block;
+    clear: both;
+    height: 0;
+    width: 0;
+}
+
+.reply-list {
+    padding-left: 88px;
+    clear: both;
+    margin-top: 15px;
+}
+/**
+ * Avatar
+ ---------------------------*/
+.comments-list .comment-avatar {
+    width: 65px;
+    height: 65px;
+    position: relative;
+    z-index: 99;
+    float: left;
+    border: 3px solid #FFF;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+
+.comments-list .comment-avatar img {
+    width: 100%;
+    height: 100%;
+}
+
+.reply-list .comment-avatar {
+    width: 50px;
+    height: 50px;
+}
+
+.comment-main-level:after {
+    content: '';
+    width: 0;
+    height: 0;
+    display: block;
+    clear: both;
+}
+/**
+ * Caja del Comentario
+ ---------------------------*/
+.comments-list .comment-box {
+    width: 680px;
+    float: right;
+    position: relative;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+}
+
+.comments-list .comment-box:before, .comments-list .comment-box:after {
+    content: '';
+    height: 0;
+    width: 0;
+    position: absolute;
+    display: block;
+    border-width: 10px 12px 10px 0;
+    border-style: solid;
+    border-color: transparent #FCFCFC;
+    top: 8px;
+    left: -11px;
+}
+
+.comments-list .comment-box:before {
+    border-width: 11px 13px 11px 0;
+    border-color: transparent rgba(0,0,0,0.05);
+    left: -12px;
+}
+
+.reply-list .comment-box {
+    width: 610px;
+}
+.comment-box .comment-head {
+    background: #FCFCFC;
+    padding: 10px 12px;
+    border-bottom: 1px solid #E5E5E5;
+    overflow: hidden;
+    -webkit-border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+}
+
+.comment-box .comment-head i {
+    float: right;
+    margin-left: 14px;
+    position: relative;
+    top: 2px;
+    color: #A6A6A6;
+    cursor: pointer;
+    -webkit-transition: color 0.3s ease;
+    -o-transition: color 0.3s ease;
+    transition: color 0.3s ease;
+}
+
+.comment-box .comment-head i:hover {
+    color: #03658c;
+}
+
+.comment-box .comment-name {
+    color: #283035;
+    font-size: 14px;
+    font-weight: 700;
+    float: left;
+    margin-right: 10px;
+}
+
+.comment-box .comment-name a {
+    color: #283035;
+}
+
+.comment-box .comment-head span {
+    float: left;
+    color: #999;
+    font-size: 13px;
+    position: relative;
+    top: 1px;
+}
+
+.comment-box .comment-content {
+    background: #FFF;
+    padding: 12px;
+    font-size: 15px;
+    color: #595959;
+    -webkit-border-radius: 0 0 4px 4px;
+    -moz-border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px;
+}
+
+.comment-box .comment-name.by-author, .comment-box .comment-name.by-author a {color: #03658c;}
+.comment-box .comment-name.by-author:after {
+    content: 'user';
+    background: #03658c;
+    color: #FFF;
+    font-size: 12px;
+    padding: 3px 5px;
+    font-weight: 700;
+    margin-left: 10px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+/** =====================
+ * Responsive
+ ========================*/
+@media only screen and (max-width: 766px) {
+    .comments-container {
+        width: 480px;
+    }
+
+    .comments-list .comment-box {
+        width: 390px;
+    }
+
+    .reply-list .comment-box {
+        width: 320px;
+    }
+}</style>

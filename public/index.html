@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Book App</title>
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+  	<link href="css/personalizado.css" rel="stylesheet">
+  	<link href="css/starter-template.css" rel="stylesheet">
+  	<link rel="stylesheet" href="/css/font-awesome.css">
+  	<link rel="stylesheet" type="text/css" href="css/sweetalert2.min.css">
+  	<link rel="stylesheet" type="text/css" href="css/reservados.css">
+  	<link rel="stylesheet" type="text/css" href="css/modalvermas.css">
+  	<link rel="stylesheet" type="text/css" href="css/modalreservando.css">
+  	<link rel="stylesheet" type="text/css" href="css/libros.css">
+  	<link rel="stylesheet" type="text/css" href="css/moviecard.css">
+
+	
+	<script src="js/angular.min.js"></script>
+	<script src="js/angular-ui-router.min.js"></script>
+	<script src="js/angular-resource.min.js"></script>
+	<script src="js/ng-cookies.js"></script>
+	<script src="js/jquery.js"></script>
+  	<script src="js/bootstrap.js"></script>
+  	<script src="js/angular-messages.js"></script>
+  	<script src="js/mask.js"></script>
+  	<script src="js/ui-bootstrap-tpls-2.5.0.min.js"></script>
+  	<script src="js/toastr.min.js"></script>
+  	<script src="js/sweetalert2.common.min.js"></script>
+  	<script  src="/js/angular-idle.js"></script>
+  	
+  	<script src="http://localhost:8000/socket.io/socket.io.js"></script>
+ 
+ 	<!-- controladors -->
+ 	<script src="controllers/app.js"></script>
+ 	<script src="controllers/fatherCtrl.js"></script>
+ 	<script src="controllers/user/loginCtrl.js"></script>  
+ 	<script src="controllers/main/perfilCtrl.js"></script> 
+ 	<script src="controllers/main/dashboardCtrl.js"></script> 
+ 	<script src="controllers/main/carreraCtrl.js"></script>
+ 	<script src="controllers/main/bookCtrl.js"></script>
+
+
+
+
+ 	<!-- servicios -->
+ 	<script src="/common/common.service.js"></script>
+ 	<script src="/common/services/main/loginResource.js"></script>
+	<script src="/common/services/main/homeResource.js"></script>
+	<script src="/common/services/main/carreraResource.js"></script>
+	<script src="/common/services/main/bookResource.js"></script>
+	<script src="/common/services/main/dashboardResource.js"></script>
+	
+
+
+
+
+	<script src="/directives/dire.js"></script>
+	<script src="/directives/lyrics.js"></script>
+	<script src="/directives/numbers.js"></script>
+	<script src="/directives/clickMenu.js"></script>
+	<script src="/directives/clickBook.js"></script>
+	<script src="/directives/socket.js"></script>
+	<script src="/directives/changeForm.js"></script>
+	<script src="/directives/checkPassword.js"></script>
+	<script src="/directives/dashboard.js"></script>
+	<script src="/directives/numbersFloat.js"></script>
+
+
+
+
+
+
+
+</head>
+<body ng-app="booksApp" ng-controller="FatherCtrl as vm">
+	<div ui-view>
+		
+	</div>
+</body>
+</html>

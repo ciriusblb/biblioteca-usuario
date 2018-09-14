@@ -1,0 +1,399 @@
+
+<div class="container-fluid">
+    <div class="">
+    	<div class="col-md-3">
+    		<div class="col-md-12">
+    			<!-- <p class="text-center"><strong>{{vc.usuario.nombre_usuario}} {{vc.usuario.apellido_usuario}}</strong></p> -->
+    		</div>
+    		<div class="col-md-12" align="center">
+    			<img class="img-responsive img-portfolio img-hover" src="/upload/{{usuario.perfil_usuario}}">
+    		</div>
+    		<div class="col-md-12" style="text-align: center;">
+    			<label class="primary-btn-btn boton" for="my-file-selector">
+				    <input id="my-file-selector" type="file" files-model="newImage.image" onchange="angular.element(this).scope().photoChanged(this.files)" style="display:none;">
+				    Upload Perfil
+				</label>
+    		</div>
+    	</div>
+
+        <div  class="col-md-9">
+            <div class="col-md-12" style="border-width: 1px 1px 0px 1px; border-style: solid; border-color: lightgrey;">
+                <h3 style="text-align: center">Mi perfil 
+                	<p ng-show="(vc.state)==false"><small>Añade información personal para compartir tu perfil</small></p>
+                </h3>
+            </div>
+            <div class="col-md-12" style="border-width: 1px 1px 0px 1px; border-style: solid; border-color: lightgrey; background: #F8F8FF	;">
+            	<div class="col-md-8 col-md-offset-2">
+            		<div ng-show="(vc.state)==true"  class="control-group form-group" >
+                		<table class="table table-condensed">
+						    <tbody>
+						        <tr>
+						            <td>Código de Estudiante:</td>
+						            <td>{{usuario.codigo_usuario}}</td>
+						        </tr>
+						        <tr>
+						            <td>Apellidos y Nombres:</td>
+						            <td>{{usuario.apellido_usuario}} {{usuario.nombre_usuario}}</td>
+						        </tr>
+						        <tr>
+						            <td>Dirección:</td>
+						            <td>{{usuario.direccion_usuario}}</td>
+						        </tr>
+						        <tr>
+						            <td>DNI:</td>
+						            <td>{{usuario.DNI_usuario}}</td>
+						        </tr>
+						        <tr>
+						            <td>Email:</td>
+						            <td>{{usuario.correo_usuario}}</td>
+						        </tr>
+						         <tr>
+						            <td>Carrera Profesional:</td>
+						            <td>{{usuario.escuela_usuario}}</td>
+						        </tr>
+						    </tbody>
+						</table>
+					</div>
+                    <div ng-show="(vc.state)==false"  class="control-group form-group">
+                        <form class="form-horizontal" name="userForm">
+						    <div class="form-group" ng-class="{'has-error':userForm.nombre.$invalid && userForm.nombre.$dirty}">
+						      <label for="nombre" class="col-sm-2 control-label">Nombre</label>
+						      <div class="col-sm-10" >
+						        <input type="text" class="form-control" name="nombre" placeholder="Escriba su nombre" ng-model="vc.editUsuario.nombre_usuario" required>
+						        <span class="help-block has-error" ng-show="userForm.nombre.$invalid && userForm.nombre.$dirty">Escriba su Nombre</span>
+						      </div>
+						    </div>
+
+						    <div class="form-group" ng-class="{'has-error':userForm.apellidos.$invalid && userForm.apellidos.$dirty}">
+						      <label for="apellidos" class="col-sm-2 control-label">Apellidos</label>
+						      <div class="col-sm-10" >
+						        <input type="text" class="form-control" name="apellidos" placeholder="Escriba sus Apellidos" ng-model="vc.editUsuario.apellido_usuario" required>
+						        <span class="help-block has-error" ng-show="userForm.apellidos.$invalid && userForm.apellidos.$dirty">Escriba sus Apellidos</span>
+						      </div>
+						    </div>
+
+						    <div class="form-group" ng-class="{'has-error':userForm.direccion.$invalid && userForm.direccion.$dirty}">
+						      <label for="direccion" class="col-sm-2 control-label">Dirección</label>
+						      <div class="col-sm-10" >
+						        <input type="text" class="form-control" name="direccion" placeholder="Escriba su direccion de domicilio" ng-model="vc.editUsuario.direccion_usuario" required>
+						        <span class="help-block has-error" ng-show="userForm.direccion.$invalid && userForm.direccion.$dirty">Escriba su Dirección de domicilio</span>
+						      </div>
+						    </div>
+
+						    <div class="form-group" ng-class="{'has-error':userForm.dni.$invalid && userForm.dni.$dirty}">
+						      <label for="dni" class="col-sm-2 control-label">DNI</label>
+						      <div class="col-sm-6 col-md-4">
+						        <input type="text" class="form-control" name="dni" ui-mask="99999999" ng-model="vc.editUsuario.DNI_usuario" required>
+						        <span class="help-block has-error" ng-show="userForm.dni.$invalid && userForm.dni.$dirty">Ingrese su número de DNI</span>
+						      </div>
+						    </div>
+						    <hr>
+						    <div class="">
+								<div class="row">
+									<div class="col-sm-12">
+										<h3>Cambiar Contraseña</h3>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-12 ">
+										<p class="text-center">Use el siguiente formulario para cambiar su contraseña. Su contraseña no puede ser la misma que su nombre de usuario.</p>
+										<form method="post" id="passwordForm">
+											<input type="password" pass-validate class=" form-control " name="password1" id="password1" ng-model="vc.passwords.password1" placeholder="New Password" autocomplete="off">
+											<div class="row">
+												<div class="col-sm-6">
+													<span id="8char" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Máximo 8 caracteres<br>
+													<span id="ucase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Una letra mayúscula
+												</div>
+												<div class="col-sm-6">
+													<span id="lcase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Una letra minúscula<br>
+													<span id="num" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Un número
+												</div>
+											</div>
+											<input type="password" pass-validate class=" form-control " name="password2" id="password2" ng-model="vc.passwords.password2" placeholder="Repeat Password" autocomplete="off">
+											<div class="row">
+												<div class="col-sm-12">
+													<span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Las contraseñas coinciden
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-12">
+													<button type="submit" style="padding: 10px 0px;" ng-click="vc.changePassword()" class="primary-btn-btn col-xs-12 ">Cambiar Contraseña</button>
+												</div>
+												
+											</div>	
+										</form>
+									</div>
+								</div>
+							</div>
+						</form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" style="border: 1px solid lightgrey; background: #e5eaf2;">
+            	<div class="col-md-12 container allFormButtons">
+            		<br >
+            		<div class="col-md-3 col-xs-12"></div>
+	               	<div class="col-md-6 col-xs-12">
+                        <div class="form-group pull-left">
+	                	  <button type="submit" ng-show="(vc.state)==true" ng-click="vc.actualizar(false)" class="primary-btn-btn boton">Actualizar</button>
+                        </div>
+                        <div class="form-group pull-left">
+	                	  <button type="submit" ng-show="(vc.state)==false" ng-click="vc.editar(true)" class="success-btn-btn boton">Guardar</button>
+                        </div>
+                        <div class="form-group pull-right">
+    		              <button type="submit" ng-show="(vc.state)==false" ng-click="vc.actualizar(true)"  class="danger-btn-btn boton">Cancelar</button>
+                        </div>
+		            </div>
+		            <div class="col-md-3 col-xs-12"></div>
+	            </div>
+            </div>
+        </div>  
+        <div  class="col-md-12" id="reservados">
+            <div class="container" >
+	            <div class="row">
+	                <div class="col-md-12">
+	                    <div class="product-sec-tittle">
+	                        <h2 class="section-heading"><span>Libros</span> Reservados</h2>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="row">
+	                <div class="featured-product">
+	                    <div class="col-xs-12 col-sm-3 col-md-3" ng-repeat="d in reservas">
+	                        <div class="product-box hover-circle text-center">
+	                            <div class="product-item">
+	                                <figure class="">
+	                                	<img class="col-xs-12" style="height: 300px;" ng-src="libros/{{d.portada_l}}" alt="product">
+	                                </figure>
+	                                <h3 class="product-title">{{d.titulo_l}}</h3>
+									<!-- <p class="product-drisc">{{d.fecha_inicio}}</p>
+	                                <h4 class="product-price">{{d.fecha_limite}}</h4> -->
+									<!--<a href="" class="btn btn-default buy-now" ng-click="vc.verLibro($index);" data-toggle="modal" data-target=".fade">Ver Libro</a> -->
+	                            </div>
+	                            <div class="hoverly-item" ng-click="vc.verLibro($index);" data-toggle="modal" data-target="#exampleModal">
+									<!--<a href="" data-toggle="tooltip" data-placement="top" title="Wish List!"><i class="fa fa-heart"></i></a>
+	                                <a href="" data-toggle="tooltip" data-placement="top" title="Add Cart!"><i class="fa fa-cart-arrow-down"></i></a>
+	                                <a href="" data-toggle="modal" data-target="#quick_view" data-toggle="tooltip" data-placement="top" title="Quick View!"><i class="fa fa-eye"></i></a> -->
+	                                <br>
+	                                <br>
+	                                <br>
+	                                <br>
+	                                <br>
+	                                <br>
+	                                <br>
+	                                <br>
+	                                <br>
+	                                <br>
+	                                <br>
+	                                <a href="" class="btn btn-default view-details-btn">Ver Detalles</a>
+	                            </div>
+	                            <div class="product-cap cap-bg-black">
+	                                <i class="fa fa-book"></i>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	       		</div>
+	   		</div>
+		</div>
+	</div>
+</div>
+<style type="text/css">
+	.primary-btn-btn {
+		background: #009688;
+		color: #fff;	
+	}
+	.primary-btn-btn:hover {
+	    color: #009688!important;
+	    border: 1px solid #009688!important;
+	    background: #fff!important;
+	}
+	.danger-btn-btn {
+		background: #d9534f;
+		color: #fff;	
+	}
+	.danger-btn-btn:hover {
+	    color: #d9534f!important;
+	    border: 1px solid #d9534f!important;
+	    background: #fff!important;
+	}
+	.success-btn-btn {
+		background: #009688;
+		color: #fff;	
+	}
+	.success-btn-btn:hover {
+	    color: #009688!important;
+	    border: 1px solid #009688!important;
+	    background: #fff!important;
+	}
+	.boton{
+		text-transform: uppercase;
+		line-height: 20px !important;
+		margin-top: -50%;
+		padding: 8px 25px;
+		border-color: transparent;
+		border-radius: 0px;
+	}
+	.boton:hover{
+		 -webkit-transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+	    transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+	}
+</style>
+
+<!-- modal ver mas -->
+<!-- <div class="modal fade" id="modalVermas" style="margin-top: 50px;">
+  <div class="modal-dialog" >
+      	<div class="container">
+			<div class="col-xs-12 col-md-8" style="border: 1px solid red;">
+				<div class="">
+				  <div class="">
+				    <div class="left"><img ng-src="libros/{{vc.preVista.portada_l}}" width="250px" height="400px" alt=""/></div>
+				    <div class="right">
+				    	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				      <div class="bio cant">
+				        <div class="head"><a href="">{{vc.preVista.autor_l}}</a></div>
+				      </div>
+				      <h1>{{vc.preVista.titulo_l}}</h1>
+				      	<table class="table table-bordered">
+			                    <thead>
+			                        <tr>
+			                            <th>Descripcion</th>
+			                            <th>Cuentas</th>
+			                        </tr>
+			                    </thead>
+			                    <tbody>
+			                        <tr>
+			                            <td class="col-md-6">codigo reserva</td>
+			                            <td class="col-md-6"><i class="fa fa-inr"></i>&nbsp;{{vc.preVista.codigo_reserva}}</td>
+			                        </tr>
+			                        <tr>
+			                            <td class="col-md-6">Fecha Reservada</td>
+			                            <td class="col-md-6"><i class="fa fa-inr"></i>&nbsp;{{vc.fecha_inicio}} a las {{vc.hora_inicio}} hroas</td>
+			                        </tr>
+			                        <tr>
+			                            <td class="col-md-6" >Fecha limite</td>
+			                            <td class="col-md-6" ng-show="vc.post==false"><i class="fa fa-inr"></i>&nbsp;{{vc.fecha_limite}} a las {{vc.hora_limite}} horas </td>
+			                            <td class="col-md-6" ng-show="vc.post==true">
+			                            	<div class="input-group">
+									            <input type="text" uib-datepicker-popup="MMM dd,yyyy"  is-open="vc.open" class="form-control" id="inputFechaPublicacion" placeholder="Fecha" ng-model="vc.newsItem.fechaPublicacion">
+									            <span class="input-group-btn">
+									              <button class="btn btn-default" type="button ng" ng-click="vc.showDatepicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+									            </span>
+									         </div>
+							     		</td>
+			                        </tr>
+			                    </tbody>
+			                </table>
+				     <div id="cancelar" style="text-align: center;" >
+				     	<a href="" class="btn btn-default view-details-btn" data-dismiss="modal" ng-click="vc.cancelarReserva()">Cancelar&nbsp; Reserva</a>
+				     	<a href="" class="btn btn-default view-details-btn2"  ng-click="vc.postergar()">Postergar Reserva</a>
+				     </div>
+				     
+				    </div>
+				  </div>
+				</div>
+			</div>
+		</div>
+  </div>
+</div> -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+    	<div class="row" id="modalVermas">
+			<div class="col-xs-12 col-md-12">
+			    <div class="left col-md-4"><img ng-src="libros/{{vc.preVista.portada_l}}" width="250px" height="400px" alt=""/></div>
+			    
+			    <div class="right col-md-8">
+			    	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				    <div class="bio cant">
+				        <div class="head"><a href="">{{vc.preVista.autor_l}}</a></div>
+				    </div>
+				    <h1>{{vc.preVista.titulo_l}}</h1>
+			      	<table class="table table-bordered">
+		                    <thead>
+		                        <tr>
+		                            <th>Descripcion</th>
+		                            <th>Cuentas</th>
+		                        </tr>
+		                    </thead>
+		                    <tbody>
+		                        <tr>
+		                            <td class="col-md-6">codigo reserva</td>
+		                            <td class="col-md-6"><i class="fa fa-inr"></i>&nbsp;{{vc.preVista.codigo_reserva}}</td>
+		                        </tr>
+		                        <tr>
+		                            <td class="col-md-6">codigo libro</td>
+		                            <td class="col-md-6"><i class="fa fa-inr"></i>&nbsp;{{vc.preVista.codigo_libro}}</td>
+		                        </tr>
+		                        <tr>
+		                            <td class="col-md-6">Fecha Reservada</td>
+		                            <td class="col-md-6"><i class="fa fa-inr"></i>&nbsp;{{vc.fecha_inicio}} a las {{vc.hora_inicio}} hroas</td>
+		                        </tr>
+		                        <tr>
+		                            <td class="col-md-6" >Fecha limite</td>
+		                            <td class="col-md-6" ng-show="vc.post==false"><i class="fa fa-inr"></i>&nbsp;{{vc.fecha_limite}} a las {{vc.hora_limite}} horas </td>
+		                            <td class="col-md-6" ng-show="vc.post==true">
+		                            	<div class="input-group">
+								            <input type="text" uib-datepicker-popup="MMM dd,yyyy"  is-open="vc.open" class="form-control" placeholder="Fecha" ng-change="vc.verificar()" ng-model="vc.fecha_limite">
+								            <span class="input-group-btn">
+								              	<button class="btn btn-default" type="button ng" ng-click="vc.showDatepicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+								            </span>
+								        </div>
+						     		</td>
+		                        </tr>
+		                    </tbody>
+		            </table>
+				    <div id="cancelar" style="text-align: center;" >
+				     	<a href="" class="btn btn-default view-details-btn" data-dismiss="modal" ng-click="vc.cancelarReserva()">Cancelar&nbsp; Reserva</a>
+				     	<a href="" ng-show="vc.post==false" class="btn btn-default view-details-btn2"  ng-click="vc.postergar()">Postergar Reserva</a>
+				     	<a href="" ng-show="vc.post==true" class="btn btn-default view-details-btn2"  ng-click="vc.postergar()">Guardar Cambios</a>
+
+				    </div> 
+				</div>
+			</div>
+		</div>	
+    </div>
+  </div>
+</div>
+<style type="text/css">
+		#cancelar .view-details-btn {
+	    text-transform: uppercase;
+		line-height: 20px !important;
+		padding: 8px 25px;
+		background: #d9534f;
+		color: #fff;
+		border-color: transparent;
+		border-radius: 0px;
+	}
+	#cancelar .view-details-btn:hover {
+	    color: #d9534f!important;
+	    border: 1px solid #d9534f!important;
+	    background: #fff!important;
+	    -webkit-transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+	    transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+	}
+			#cancelar .view-details-btn2 {
+	    text-transform: uppercase;
+		line-height: 20px !important;
+		padding: 8px 25px;
+		background: #084951;
+		color: #fff;
+		border-color: transparent;
+		border-radius: 0px;
+	}
+	#cancelar .view-details-btn2:hover {
+	    color: #084951!important;
+	    border: 1px solid #084951!important;
+	    background: #fff!important;
+	    -webkit-transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+	    transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+	}
+
+</style>
+
+
+
+
+
+
